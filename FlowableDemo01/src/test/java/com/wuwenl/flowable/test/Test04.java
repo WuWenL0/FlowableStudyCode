@@ -1,11 +1,9 @@
 package com.wuwenl.flowable.test;
 
-import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.ProcessEngines;
-import org.flowable.engine.RepositoryService;
-import org.flowable.engine.RuntimeService;
+import org.flowable.engine.*;
 import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.task.api.Task;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -57,4 +55,43 @@ public class Test04 {
         System.out.println("holidayRequest.getActivityId() = " + holidayRequest.getActivityId());
         System.out.println("holidayRequest.getId() = " + holidayRequest.getId());
     }
+
+    /**
+     * 任务处理
+     */
+    @Test
+    public void testCompleteTask() {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery()
+                .processInstanceId("30001")
+                .taskAssignee("zs")
+                .singleResult();
+
+        Map<String, Object> processVariables = task.getProcessVariables();
+        for (String key : processVariables.keySet()) {
+            System.out.println(key + ":" + processVariables.get(key));
+        }
+
+        processVariables.put("approved", false);
+        processVariables.put("description", "out play");
+        taskService.complete(task.getId(), processVariables);
+    }
+
+    /**
+     * 任务完成
+     */
+    @Test
+    public void testDoneTask() {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery()
+                .processInstanceId("30001")
+                .taskAssignee("ls")
+                .singleResult();
+
+        taskService.complete(task.getId());
+    }
+
+
 }

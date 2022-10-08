@@ -79,7 +79,7 @@ public class Test03 {
         RepositoryService repositoryService = processEngine.getRepositoryService();
 //        repositoryService.deleteDeployment("1");
         // 级联删除
-        repositoryService.deleteDeployment("2501", true);
+        repositoryService.deleteDeployment("47501", true);
     }
 
     /**
