@@ -5,10 +5,10 @@
     <bean id="processEngineConfiguration" class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">
 
         <property name="jdbcUrl"
-                  value="jdbc:mysql://127.0.0.1:3306/flowable-learn?characterEncoding=utf-8&amp;serverTimezone=UTC"/>
+                  value="jdbc:mysql://127.0.0.1:3306/flowable-learn2?characterEncoding=utf-8&amp;serverTimezone=UTC"/>
         <property name="jdbcDriver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbcUsername" value="root"/>
-        <property name="jdbcPassword" value="123456"/>
+        <property name="jdbcPassword" value="root"/>
         <property name="databaseSchemaUpdate" value="true"/>
         <property name="asyncExecutorActivate" value="false"/>
 
